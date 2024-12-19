@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://kafka.apachecn.org/2/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>2. APIs - 【布客】kafka 中文翻译</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DP4GX97XY"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', "G-8DP4GX97XY");
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">【布客】kafka 中文翻译</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">kafke 中文文档</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://kafka1x.apachecn.org" class="nav-link">kafke 1.0.x 版本</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">kafke 3.5.x 版本</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../1/" class="dropdown-item">1. 入门</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">2. APIs</a>
+</li>
+                                    
+<li>
+    <a href="../3/" class="dropdown-item">3. 配置</a>
+</li>
+                                    
+<li>
+    <a href="../4/" class="dropdown-item">4. 设计</a>
+</li>
+                                    
+<li>
+    <a href="../5/" class="dropdown-item">5. 实施</a>
+</li>
+                                    
+<li>
+    <a href="../6/" class="dropdown-item">6. 运维</a>
+</li>
+                                    
+<li>
+    <a href="../7/" class="dropdown-item">7. 安全</a>
+</li>
+                                    
+<li>
+    <a href="../8/" class="dropdown-item">8. Kafka 连接</a>
+</li>
+                                    
+<li>
+    <a href="../9/" class="dropdown-item">9. Kafka Streams</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../downloads/" class="nav-link">下载 Kafka</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../contrib/" class="nav-link">贡献指南</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.apachecn.org/about" class="nav-link">关于我们</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.apachecn.org/join" class="nav-link">加入我们</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://docs.apachecn.org" class="nav-link">中文资源合集</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../1/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../3/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/apachecn/kafka-doc-zh/edit/master/docs/2.md" class="nav-link">Edit on apachecn/kafka-doc-zh
+                                    </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#2-api" class="nav-link">2. API</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#21-producer-api" class="nav-link">2.1 Producer API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#22-consumer-api" class="nav-link">2.2 Consumer API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#23-streams-api" class="nav-link">2.3 Streams API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#24-connect-api" class="nav-link">2.4 Connect API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#25-adminclient-api" class="nav-link">2.5 AdminClient API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="2-api">2. API</h1>
+<p>Kafka 包含五个核心 api：</p>
+<ol>
+<li><a href="https://kafka.apachecn.org/documentation.html#producerapi">Producer</a> API 允许应用程序将数据流发送到 Kafka 集群中的主题。</li>
+<li><a href="https://kafka.apachecn.org/documentation.html#consumerapi">Consumer</a> API 允许应用程序从 Kafka 集群中的主题读取数据流。</li>
+<li><a href="https://kafka.apachecn.org/documentation.html#streamsapi">Streams</a> API 允许将数据流从输入主题转换为输出主题。</li>
+<li><a href="https://kafka.apachecn.org/documentation.html#connectapi">Connect</a> API 允许实现不断从某些源系统或应用程序拉取到 Kafka 或从 Kafka 推送到某些接收器系统或应用程序的连接器。</li>
+<li><a href="https://kafka.apachecn.org/documentation.html#adminapi">AdminClient</a> API 允许管理和检查主题、代理和其他 Kafka 对象。</li>
+</ol>
+<p>Kafka 通过独立于语言的协议公开其所有功能，该协议具有多种编程语言的客户端。然而，只有 Java 客户端作为主 Kafka 项目的一部分进行维护，其他客户端可作为独立的开源项目使用。<a href="https://cwiki.apache.org/confluence/display/KAFKA/Clients">此处</a>提供了非 Java 客户端的列表。</p>
+<h2 id="21-producer-api">2.1 Producer API</h2>
+<p>Producer API 允许应用程序将数据流发送到 Kafka 集群中的主题。</p>
+<p><a href="https://kafka.apache.org/35/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html" title="Kafka 3.5 Javadoc">javadocs</a> 中给出了展示如何使用生产者的示例 。</p>
+<p>要使用生产者，您可以使用以下 Maven 依赖项：</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt;
+    &lt;artifactId&gt;kafka-clients&lt;/artifactId&gt;
+    &lt;version&gt;3.5.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h2 id="22-consumer-api">2.2 Consumer API</h2>
+<p>Consumer API 允许应用程序从 Kafka 集群中的主题读取数据流。</p>
+<p><a href="https://kafka.apache.org/35/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html" title="Kafka 3.5 Javadoc">javadocs</a> 中给出了展示如何使用消费者的示例 。</p>
+<p>要使用消费者，您可以使用以下 Maven 依赖项：</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt;
+    &lt;artifactId&gt;kafka-clients&lt;/artifactId&gt;
+    &lt;version&gt;3.5.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h2 id="23-streams-api">2.3 Streams API</h2>
+<p><a href="https://kafka.apachecn.org/documentation.html#streamsapi">Streams</a> API 允许将数据流从输入主题转换为输出主题。</p>
+<p><a href="https://kafka.apache.org/35/javadoc/index.html?org/apache/kafka/streams/KafkaStreams.html" title="Kafka 3.5 Javadoc">javadoc</a> 中给出了展示如何使用该库的示例。</p>
+<p>有关使用 Streams API 的其他文档可<a href="https://kafka.apache.org/35/documentation/streams">在此处</a>获取。</p>
+<p>要使用 Kafka Streams，您可以使用以下 Maven 依赖项：</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt;
+    &lt;artifactId&gt;kafka-streams&lt;/artifactId&gt;
+    &lt;version&gt;3.5.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>使用 Scala 时，您可以选择包含该<code>kafka-streams-scala</code>库。<a href="https://kafka.apache.org/35/documentation/streams/developer-guide/dsl-api.html#scala-dsl">开发人员指南中</a>提供了有关使用 Scala 的 Kafka Streams DSL 的其他文档。</p>
+<p>要在 Scala 2.13 中使用 Kafka Streams DSL for Scala，您可以使用以下 Maven 依赖项：</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt;
+    &lt;artifactId&gt;kafka-streams-scala_2.13&lt;/artifactId&gt;
+    &lt;version&gt;3.5.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h2 id="24-connect-api">2.4 Connect API</h2>
+<p>Connect API 允许实现不断从某个源数据系统拉入 Kafka 或从 Kafka 推送到某个接收器数据系统的连接器。</p>
+<p>Connect 的许多用户不需要直接使用此 API，但他们可以使用预构建的连接器，而无需编写任何代码。有关使用 Connect 的更多信息可<a href="https://kafka.apache.org/documentation.html#connect">在此处</a>获取。</p>
+<p>想要实现自定义连接器的人可以查看<a href="https://kafka.apache.org/35/javadoc/index.html?org/apache/kafka/connect" title="Kafka 3.5 Javadoc">javadoc</a>。</p>
+<h2 id="25-adminclient-api">2.5 AdminClient API</h2>
+<p>AdminClient API 支持管理和检查 topics, brokers, acls, and 其他 Kafka 对象。</p>
+<p>要使用 AdminClient API，请添加以下 Maven 依赖项：</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt;
+    &lt;artifactId&gt;kafka-clients&lt;/artifactId&gt;
+    &lt;version&gt;3.5.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>有关 AdminClient API 的更多信息，请参阅<a href="https://kafka.apache.org/35/javadoc/index.html?org/apache/kafka/clients/admin/Admin.html" title="Kafka 3.5 Javadoc">javadoc</a>。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
